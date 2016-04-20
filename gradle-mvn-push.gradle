@@ -92,16 +92,6 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
-    task javadocs(type: Javadoc) {
-        source = sourceSets.main.java.srcDirs
-        classpath += project.files(getBootClasspath().join(File.pathSeparator))
-    }
-
-    task javadocsJar(type: Jar, dependsOn: javadocs) {
-        classifier = 'javadoc'
-        from javadocs.destinationDir
-    }
-
     task sourcesJar(type: Jar) {
         classifier = 'sources'
         from sourceSets.main.java.sourceFiles
@@ -109,6 +99,5 @@ afterEvaluate { project ->
 
     artifacts {
         archives sourcesJar
-        archives javadocsJar
     }
 }
